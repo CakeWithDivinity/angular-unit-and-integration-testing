@@ -1,3 +1,3 @@
-<button class="red" (click)="decrementCounter()">-</button>
-<p>Count: {{ count$ | async }}</p>
-<button class="green" (click)="incrementCounter()">+</button>
+<button data-cy="decrease" class="red" (click)="decrementCounter()">-</button>
+<p>Count: <span data-cy="count">{{ count$ | async }}</span></p>
+<button data-cy="increase" class="green" (click)="incrementCounter()">+</button>
