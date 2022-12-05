@@ -24,5 +24,13 @@ describe('CounterService', () => {
   it('decreases counter', () => {
     service.decrement();
     expect(service.getCurrentCount()).toBe(-1);
-  })
+  });
+
+  it('decreases counter observable', (done) => {
+    service.decrement();
+    service.getCounterStream().subscribe((currentValue) => {
+      expect(currentValue).toBe(-1);
+      done();
+    })
+  });
 })
