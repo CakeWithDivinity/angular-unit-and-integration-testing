@@ -1,3 +1,10 @@
 <button data-cy="decrease" class="red" (click)="decrementCounter()">-</button>
-<p>Count: <span data-cy="count">{{ count$ | async }}</span></p>
+<p *transloco="let t">{{ t('count') }}: <span data-cy="count">{{ count$ | async }}</span></p>
 <button data-cy="increase" class="green" (click)="incrementCounter()">+</button>
+
+{{ selectedLanguage$ | async}} 
+
+<select *ngIf="selectedLanguage$ | async as language" (change)="changeLanguage($event)">
+  <option [selected]="language === 'en'" value="en">English</option>
+  <option [selected]="language === 'de'" value="de">German</option>
+</select>

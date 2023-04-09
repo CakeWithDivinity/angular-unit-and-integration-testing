@@ -1,8 +1,11 @@
 import { AppComponent } from "./app.component"
+import { getTranslocoTestingModule } from "./transloco-testing.module";
 
 describe('AppComponent', () => {
   beforeEach(() => {
-    cy.mount(AppComponent);
+    cy.mount(AppComponent, {
+      imports: [getTranslocoTestingModule()],
+    });
   })
 
   it('shows count', () => {

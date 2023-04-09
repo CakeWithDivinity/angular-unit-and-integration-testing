@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { Observable } from 'rxjs';
 import { CounterService } from './services/counter.service';
 
@@ -10,9 +11,14 @@ import { CounterService } from './services/counter.service';
 })
 export class AppComponent {
 
+  selectedLanguage$ = this.translocoService.langChanges$;
+
   count$: Observable<number>;
 
-  constructor(private counterService: CounterService) {
+  constructor(
+    private counterService: CounterService,
+    private translocoService: TranslocoService
+  ) {
     this.count$ = counterService.getCounterStream();
   }
 
@@ -22,5 +28,10 @@ export class AppComponent {
 
   decrementCounter(): void {
     this.counterService.decrement();
+  }
+
+  changeLanguage(event: Event): void {
+    const lang = (event.target as HTMLSelectElement).value;
+    this.translocoService.setActiveLang(lang);
   }
 }
